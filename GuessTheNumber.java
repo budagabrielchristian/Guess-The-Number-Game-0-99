@@ -24,7 +24,7 @@ public class GuessTheNumber implements ActionListener{
     	label.setFont(new Font("Courier New", Font.PLAIN, 35));
     	
     	numbersTriedText = new JLabel();
-    	numbersTriedText.setFont(new Font("Courier New", Font.PLAIN, 20));
+    	numbersTriedText.setFont(new Font("Courier New", Font.PLAIN, 15));
     	
     	numberField = new JTextField();
     	numberField.setPreferredSize(new Dimension(800, 100));
