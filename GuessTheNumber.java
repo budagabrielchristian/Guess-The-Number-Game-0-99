@@ -24,7 +24,7 @@ public class GuessTheNumber implements ActionListener{
     	label.setFont(new Font("Courier New", Font.PLAIN, 35));
     	
     	numbersTriedText = new JLabel();
-    	numbersTriedText.setFont(new Font("Courier New", Font.PLAIN, 15));
+    	numbersTriedText.setFont(new Font("Courier New", Font.PLAIN, 20));
     	
     	numberField = new JTextField();
     	numberField.setPreferredSize(new Dimension(800, 100));
@@ -67,26 +67,33 @@ public class GuessTheNumber implements ActionListener{
     		label.setText("Please input a number.");
     	}
 		    try {
-		    	int inputtedNumber = Integer.parseInt(numberField.getText());
-		        if(ae.getSource() == guess) { 
-		             if(inputtedNumber == randInt) {
-		            	 guesses++;
-		            	 numbersTried.add(inputtedNumber);
-		            	 label.setText("You win!! | Guesses Took: "+guesses);
-		            	 numbersTriedText.setText("Numbers Tried: "+numbersTried+"");
-		            	 guesses = 0;
-		            	 giveUp.setEnabled(false);
-		            	 guess.setEnabled(false);
-		             }else if(inputtedNumber>randInt) {
-		            	 label.setText("Too high!");
-		            	 numbersTried.add(inputtedNumber);
-		            	 guesses++;
-		             }else {
-		            	 label.setText("Too low!");
-		            	 guesses++;
-		            	 numbersTried.add(inputtedNumber);
-		             }
-		        }
+			    	int inputtedNumber = Integer.parseInt(numberField.getText());
+			    	if(inputtedNumber <= 0 || inputtedNumber >100) {
+			    		label.setText("Input Numbers 1-100 only.");
+			    		return;
+			    	}
+			        if(ae.getSource() == guess) { 
+			             if(inputtedNumber == randInt) {
+			            	 guesses++;
+			            	 numbersTried.add(inputtedNumber);
+			            	 label.setText("You win!! | Guesses Took: "+guesses);
+			            	 numbersTriedText.setText("Numbers Tried: "+numbersTried);
+			            	 guesses = 0;
+			            	 giveUp.setEnabled(false);
+			            	 guess.setEnabled(false);
+			             }else if(inputtedNumber>randInt) {
+			            	 label.setText("Too high!");
+			            	 numbersTried.add(inputtedNumber);
+			            	 guesses++;
+			             }else {
+			            	 label.setText("Too low!");
+			            	 guesses++;
+			            	 numbersTried.add(inputtedNumber);
+			             }
+			        }
+		        }catch(NumberFormatException e) {
+			    	label.setText("Please input a number, not a String.");
+			    }
 		        if(ae.getSource() == giveUp) {
 		        	label.setText("The Random Number Was: "+randInt+"| Amount of tries: "+guesses);
 		        	numberField.setText("");
@@ -96,16 +103,14 @@ public class GuessTheNumber implements ActionListener{
 		        }
 		        if(ae.getSource() == playAgain) {
 		        	randInt = random.nextInt(100)*1;
+		        	guess.setEnabled(true);
+		        	giveUp.setEnabled(true);
 		        	guesses = 0;
 		        	numbersTriedText.setText("");
 		        	numbersTried.clear();
 		        	label.setText("");
 		        	numberField.setText("");
-		        	guess.setEnabled(true);
-		        	giveUp.setEnabled(true);
 		        }
-		    }catch(NumberFormatException e) {
-		    	label.setText("Please input a number, not a String.");
-		    }
+		    
     }
 }
