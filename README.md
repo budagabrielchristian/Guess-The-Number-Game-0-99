@@ -1,4 +1,3 @@
-<img src = "https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg"></img>
 In order to start playing the game, you must create an object of that class in your main class.
 
 Example:
