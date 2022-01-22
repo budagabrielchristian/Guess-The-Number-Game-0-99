@@ -18,7 +18,7 @@ public class GuessTheNumber implements ActionListener {
    Random random = new Random();
    JLabel label, numbersTriedText;
    JTextField numberField;
-   int randInt = random.nextInt(100) * 1, guesses = 0;
+   int randInt = random.nextInt(100) + 1, guesses = 0;
    GuessTheNumber() {
       label = new JLabel();
       label.setFont(new Font("Courier New", Font.PLAIN, 35));
@@ -40,6 +40,7 @@ public class GuessTheNumber implements ActionListener {
       playAgain.addActionListener(this);
       playAgain.setFont(new Font("Courier New", Font.PLAIN, 35));
       playAgain.setFocusable(false);
+      playAgain.setVisible(false);
 
       giveUp = new JButton("Give Up!");
       giveUp.addActionListener(this);
@@ -79,6 +80,7 @@ public class GuessTheNumber implements ActionListener {
                numbersTriedText.setText("Numbers Tried: " + numbersTried);
                guesses = 0;
                giveUp.setEnabled(false);
+               playAgain.setVisible(true);
                guess.setEnabled(false);
             } else if (inputtedNumber > randInt) {
                label.setText("Too high!");
@@ -99,6 +101,7 @@ public class GuessTheNumber implements ActionListener {
          numberField.setText("");
          guesses = 0;
          guess.setEnabled(false);
+         playAgain.setVisible(true);
          giveUp.setEnabled(false);
       }
       if (ae.getSource() == playAgain) {
@@ -109,6 +112,7 @@ public class GuessTheNumber implements ActionListener {
          numbersTriedText.setText("");
          numbersTried.clear();
          label.setText("");
+         playAgain.setVisible(false);
          numberField.setText("");
       }
    }
