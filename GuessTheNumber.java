@@ -105,7 +105,7 @@ public class GuessTheNumber implements ActionListener {
          giveUp.setEnabled(false);
       }
       if (ae.getSource() == playAgain) {
-         randInt = random.nextInt(100) * 1;
+         randInt = random.nextInt(100) + 1;
          guess.setEnabled(true);
          giveUp.setEnabled(true);
          guesses = 0;
